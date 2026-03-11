@@ -40,7 +40,7 @@ int Queue::dequeue(){
      /* Add head and tail for me please */
 
   }
-  cout<<"Empty queue";
+  cout<<"Empty Queue";
   return -1;
 }
 
