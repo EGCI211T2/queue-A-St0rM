@@ -16,7 +16,14 @@ public:
 void Queue::enqueue(int x){
   NodePtr new_node= new NODE(x);
 if(new_node){ 
-    /* Add head and tail for me please */
+    if(size>0){
+        tailPtr->set_next(new_node);
+    }
+    else{
+        headPtr = new_node;
+    }
+    tailPtr=new_node; size++;
+    /* Add head and tail for me please
    1. connect & Change tail
   2. (may be) change head  when the queue is empty
   3. increase size */
@@ -26,10 +33,12 @@ if(new_node){
 
 int Queue::dequeue(){
   if(size>0){
-    
+    NodePtr t = headPtr;
+    headPtr=headPtr->get_next();
+    size--;
+    delete t;
      /* Add head and tail for me please */
-          
-    
+
   }
   cout<<"Empty queue";
   return -1;
@@ -37,13 +46,17 @@ int Queue::dequeue(){
 
 
 Queue::Queue(){
-    //initialize Queue
-    
+    size = 0;
+    headPtr , tailPtr = 0;
 }
+
 Queue::~Queue(){
-      
+      cout << "Dequeue all" << endl;
     //delete all remaning Queue (i.e. DQ all) 
-    
+    int n= size;
+    for(int i=0; i < n; i++){
+        dequeue();
+    } 
 }
 
 
